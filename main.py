@@ -4,6 +4,9 @@ import pyautogui
 
 app = Flask(__name__)
 CORS(app, origins='*')
+@app.route('/', methods=['POST'])
+def home():
+    return 'Click!'
 
 @app.route('/click', methods=['POST'])
 def click():
@@ -11,6 +14,3 @@ def click():
     screenWidth, screenHeight = pyautogui.size()
     pyautogui.click(screenWidth // 2, screenHeight // 2)
     return 'Click simulated successfully!'
-
-if __name__ == '__main__':
-    app.run(debug=True)
